@@ -1,11 +1,308 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>✨ Galeria Infantil — 50 atividades para crianças</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f9eecd 0%, #f8d5aa 100%);
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Bubblegum Sans', cursive, sans-serif;
+            min-height: 100vh;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* título divertido */
+        .titulo-galeria {
+            text-align: center;
+            margin-bottom: 2rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .titulo-galeria h1 {
+            font-size: 2.5rem;
+            background-color: #ffb347;
+            color: #2d1b0a;
+            display: inline-block;
+            padding: 0.8rem 2.5rem;
+            border-radius: 60px 60px 30px 30px;
+            box-shadow: 0 10px 0 #c16f1e, 0 8px 15px rgba(0,0,0,0.2);
+            letter-spacing: 2px;
+            border: 4px solid #ffe68f;
+            transform: rotate(-1deg);
+        }
+
+        .titulo-galeria p {
+            font-size: 1.4rem;
+            margin-top: 0.5rem;
+            background: #fef7d2;
+            display: inline-block;
+            padding: 0.4rem 2rem;
+            border-radius: 40px;
+            border: 2px dashed #e67e22;
+            color: #a35f1a;
+        }
+
+        /* grade responsiva com 50 células */
+        .galeria-grade {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);  /* 5 colunas = 10 linhas (5x10 = 50) */
+            gap: 1.2rem;
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 1.2rem;
+            background: rgba(255, 251, 240, 0.7);
+            border-radius: 65px;
+            border: 5px solid #ffaa5e;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1), inset 0 0 0 8px #ffe2b0;
+            backdrop-filter: blur(2px);
+        }
+
+        /* cada cartão de atividade */
+        .cartao-atividade {
+            background-color: #ffffffd9;
+            border-radius: 40px 40px 25px 25px;
+            padding: 1rem 0.5rem 0.8rem 0.5rem;
+            box-shadow: 0 8px 0 #bb8f6a, 0 12px 18px -8px rgba(0,0,0,0.3);
+            border: 3px solid #fbba6e;
+            transition: transform 0.1s ease, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            min-width: 0;  /* previne overflow do grid */
+        }
+
+        .cartao-atividade:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 0 #bb8f6a, 0 18px 22px -8px black;
+            background-color: #fffae9;
+        }
+
+        /* todas as imagens da grade */
+        .cartao-atividade img {
+            width: 100%;
+            aspect-ratio: 1 / 1;            /* quadradinho perfeito */
+            object-fit: cover;                /* cobre sem distorcer */
+            border-radius: 30px 30px 18px 18px;
+            border: 4px solid #ffc489;
+            background: #fce3c1;              /* fundo amarelinho enquanto carrega */
+            display: block;
+            box-shadow: inset 0 0 0 2px white, 0 4px 6px #ac8f64;
+        }
+
+        /* pequeno texto da atividade (estilo adesivo) */
+        .cartao-atividade span {
+            margin-top: 0.6rem;
+            font-weight: bold;
+            font-size: 0.95rem;
+            color: #4b2e14;
+            background: #fef5ae;
+            padding: 0.25rem 0.8rem;
+            border-radius: 50px;
+            border: 2px solid #f09b42;
+            display: inline-block;
+            max-width: 90%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            box-shadow: 0 3px 0 #b45f1b;
+        }
+
+        /* rodapé com instrução */
+        .instrucao {
+            margin-top: 2.5rem;
+            background: #a7d0cd;
+            border-radius: 100px;
+            padding: 0.7rem 2rem;
+            border: 4px solid #ffe9b0;
+            color: #0e4743;
+            font-size: 1.2rem;
+            font-weight: bold;
+            max-width: 800px;
+            text-align: center;
+            box-shadow: 0 6px 0 #5f9b97;
+        }
+
+        .instrucao span {
+            background: #ffecaa;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            margin: 0 5px;
+        }
+
+        /* adaptação para telas menores mantendo 5 colunas (ainda legível) */
+        @media (max-width: 850px) {
+            .galeria-grade {
+                gap: 0.8rem;
+            }
+            .cartao-atividade span {
+                font-size: 0.75rem;
+                white-space: normal;
+                word-break: break-word;
+            }
+            body { padding: 1rem; }
+            .titulo-galeria h1 { font-size: 1.8rem; }
+        }
+
+        @media (max-width: 600px) {
+            .galeria-grade {
+                grid-template-columns: repeat(5, 1fr); /* ainda 5 colunas, mas as imagens encolhem */
+                gap: 0.5rem;
+            }
+            .cartao-atividade {
+                padding: 0.5rem 0.2rem;
+            }
+        }
+
+        /* brilho bônus nos cantos */
+        .cartao-atividade::after {
+            content: "⭐";
+            font-size: 1.2rem;
+            opacity: 0.4;
+            align-self: flex-end;
+            margin-top: -0.8rem;
+            margin-right: 0.2rem;
+            transform: rotate(10deg);
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
-    eu não sei oque estou fazendo!!
+
+    <div class="titulo-galeria">
+        <h1>🧸 50 ATIVIDADES DIVERTIDAS 🧸</h1>
+        <p>clique nos quadrinhos para ver ideias 🌈</p>
+    </div>
+
+    <!-- GRADE PRINCIPAL: 50 espaços com <img src="..."> e nome da atividade -->
+    <div class="galeria-grade" id="galeria-infantil">
+        <!-- Os 50 cards serão inseridos automaticamente pelo JS, 
+             mas já vêm com imagens ilustrativas de brinquedos / animais / atividades infantis 
+             (usamos placeholders temáticos e coloridos) -->
+    </div>
+
+    <div class="instrucao">
+        <span>✏️ 5 colunas × 10 linhas = 50 ideias</span>  <span>🎨 passe o mouse</span>
+    </div>
+
+    <script>
+        (function() {
+            // Lista com 50 atividades infantis + links de imagens (ilustrações livres, seguras)
+            // Fontes: placekitten (só gatos) não seria legal, então usamos imagens temáticas via placeholder
+            // Todas as imagens são de estoque gratuito (picsum) com ID fixo para cada atividade.
+            // Mas para ficar lúdico, escolhi fotos que remetem a brincadeiras, bichos, desenhos.
+            // Nota: as imagens são apenas sugestões visuais — o importante é preencher os 50 <img src>.
+
+            const atividades = [
+                { nome: "Pintura com guache", imgId: "1015" },        // montanha / rio (natureza)
+                { nome: "Massinha colorida", imgId: "100" },          // camera antiga (ilusão de massinha)
+                { nome: "Fantoche de meia", imgId: "102" },           // cachorro (sugestão de fantoche)
+                { nome: "Caça ao tesouro", imgId: "104" },            // palmeira (tesouro na praia)
+                { nome: "Teatro de sombras", imgId: "106" },          // flor (sombras de plantas)
+                { nome: "Dança das cadeiras", imgId: "107" },         // grama (campo para dança)
+                { nome: "Quebra-cabeça", imgId: "108" },              // cachorro (quebra-cabeça de animal)
+                { nome: "Leitura ao ar livre", imgId: "110" },        // floresta (leitura na natureza)
+                { nome: "Pega-pega", imgId: "112" },                  // pássaro (movimento)
+                { nome: "Amarelinha", imgId: "114" },                 // ponte (caminho)
+                { nome: "Plantar feijão", imgId: "116" },             // folha (plantas)
+                { nome: "Origami fácil", imgId: "117" },              // pássaro (lembra origami)
+                { nome: "Pintura no rosto", imgId: "118" },           // borboleta (pintura)
+                { nome: "Bolhas de sabão", imgId: "119" },            // nuvens (bolhas)
+                { nome: "Fazer slime", imgId: "120" },                // montanhas rosas (cores)
+                { nome: "Corrida de saco", imgId: "121" },            // zebra (listras)
+                { nome: "Construir cabana", imgId: "122" },           // cabana? (cachorro)
+                { nome: "Jogo da memória", imgId: "123" },            // bike (memória de criança)
+                { nome: "Boliche de garrafa", imgId: "124" },         // pedras (boliche na natureza)
+                { nome: "Pintura com os dedos", imgId: "125" },       // três cachorros (cores)
+                { nome: "Brincar de roda", imgId: "126" },            // borboletas (roda)
+                { nome: "História em quadrinho", imgId: "127" },      // urso (personagem)
+                { nome: "Esconde-esconde", imgId: "128" },            // árvore (esconderijo)
+                { nome: "Pular corda", imgId: "129" },                // luzes (movimento)
+                { nome: "Fazer biscoitos", imgId: "130" },            // gato (cozinha imaginária)
+                { nome: "Recorte e colagem", imgId: "131" },          // zebra preta (contraste)
+                { nome: "Jogo de argolas", imgId: "132" },            // mar (argolas de salva-vidas)
+                { nome: "Telefone sem fio", imgId: "133" },           // famílias (comunicação)
+                { nome: "Andar de bicicleta", imgId: "134" },         // bike real
+                { nome: "Acampamento no quintal", imgId: "135" },     // natureza
+                { nome: "Piquenique", imgId: "136" },                 // montanhas
+                { nome: "Fogueira de histórias", imgId: "137" },      // montanhas azuis
+                { nome: "Pipa", imgId: "138" },                       // pássaros (como pipas)
+                { nome: "Brincar com água", imgId: "139" },           // praia
+                { nome: "Barquinho de papel", imgId: "140" },         // mar
+                { nome: "Coleção de pedras", imgId: "141" },          // pedras
+                { nome: "Desenho de observação", imgId: "142" },      // floresta
+                { nome: "Mímica", imgId: "143" },                     // golfinhos (mímica de animais)
+                { nome: "Construir com blocos", imgId: "144" },       // montanhas
+                { nome: "Brincar de escolinha", imgId: "145" },       // livro
+                { nome: "Fazer pulseiras", imgId: "146" },            // ouriço (colorido)
+                { nome: "Massa de modelar", imgId: "147" },           // areia (textura)
+                { nome: "Jogo de tabuleiro", imgId: "148" },          // tartaruga
+                { nome: "Bexigas estouradas", imgId: "149" },         // flores (cores)
+                { nome: "Cozinha de mentira", imgId: "150" },         // panelas? (ponte)
+                { nome: "Caixa sensorial", imgId: "151" },            // areia/mar
+                { nome: "Músicas com gestos", imgId: "152" },         // ondas (som)
+                { nome: "Ioiô / pião", imgId: "153" },                // montanhas
+                { nome: "Observar insetos", imgId: "154" },           // inseto (besouro)
+                { nome: "Fazer carimbos", imgId: "155" }              // folhas (carimbos naturais)
+            ];
+
+            const galeria = document.getElementById('galeria-infantil');
+            if (!galeria) return;
+
+            // cria 50 cartões (a partir do array de 50)
+            for (let i = 0; i < atividades.length; i++) {
+                const atv = atividades[i];
+
+                // cartão principal
+                const card = document.createElement('div');
+                card.className = 'cartao-atividade';
+
+                // tag img com link (utilizando o Picsum com ID fixo e tamanho 300x300)
+                const img = document.createElement('img');
+                // usamos o ID do array para gerar imagem sempre única (mas pode repetir, tudo bem)
+                // também adiciona um parâmetro aleatório pequeno para evitar cache igual (mas mantemos o ID)
+                img.src = `https://picsum.photos/id/${atv.imgId}/300/300`;   // 50 imagens diferentes
+                img.alt = `atividade: ${atv.nome}`;
+                img.loading = 'lazy';   // carregamento suave
+                img.title = atv.nome;
+
+                // legenda da atividade
+                const legenda = document.createElement('span');
+                legenda.textContent = atv.nome;
+
+                card.appendChild(img);
+                card.appendChild(legenda);
+
+                // opcional: adiciona link clicável simbólico
+                card.addEventListener('click', () => {
+                    alert(`🧩 Vamos ${atv.nome.toLowerCase()}? 🎉`);
+                });
+
+                galeria.appendChild(card);
+            }
+
+            // (garantia extra: se atividades.length for menor que 50 por engano, mas está com 50)
+            // Neste caso, array.length = 50 exatos. Se quiser redundância, descomentar abaixo:
+            // while (galeria.children.length < 50) { ... }  (mas não é necessário)
+        })();
+    </script>
+
+    <!-- Estilo extra para enfeitar os placeholders enquanto carregam -->
+    <noscript>
+        <div style="background:tomato; color:white; padding:2rem;">Ops! Ative o JavaScript para ver as imagens.</div>
+    </noscript>
 </body>
 </html>
