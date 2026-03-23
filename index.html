@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✨ Galeria Infantil — 50 atividades para crianças</title>
+    <title>Atividades Infantis - 50 Ideias Divertidas para Crianças</title>
     <style>
         * {
             margin: 0;
@@ -12,297 +12,638 @@
         }
 
         body {
-            background: linear-gradient(145deg, #f9eecd 0%, #f8d5aa 100%);
-            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Bubblegum Sans', cursive, sans-serif;
-            min-height: 100vh;
-            padding: 2rem 1.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
         }
 
-        /* título divertido */
-        .titulo-galeria {
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
             text-align: center;
-            margin-bottom: 2rem;
-            width: 100%;
-            max-width: 1200px;
+            padding: 40px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .titulo-galeria h1 {
-            font-size: 2.5rem;
-            background-color: #ffb347;
-            color: #2d1b0a;
-            display: inline-block;
-            padding: 0.8rem 2.5rem;
-            border-radius: 60px 60px 30px 30px;
-            box-shadow: 0 10px 0 #c16f1e, 0 8px 15px rgba(0,0,0,0.2);
-            letter-spacing: 2px;
-            border: 4px solid #ffe68f;
-            transform: rotate(-1deg);
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            animation: slideInDown 0.8s ease;
         }
 
-        .titulo-galeria p {
-            font-size: 1.4rem;
-            margin-top: 0.5rem;
-            background: #fef7d2;
-            display: inline-block;
-            padding: 0.4rem 2rem;
-            border-radius: 40px;
-            border: 2px dashed #e67e22;
-            color: #a35f1a;
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            animation: slideInUp 0.8s ease;
         }
 
-        /* grade responsiva com 50 células */
-        .galeria-grade {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);  /* 5 colunas = 10 linhas (5x10 = 50) */
-            gap: 1.2rem;
-            max-width: 1300px;
-            width: 100%;
+        /* Container principal */
+        .container {
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 1.2rem;
-            background: rgba(255, 251, 240, 0.7);
-            border-radius: 65px;
-            border: 5px solid #ffaa5e;
-            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1), inset 0 0 0 8px #ffe2b0;
-            backdrop-filter: blur(2px);
+            padding: 40px 20px;
         }
 
-        /* cada cartão de atividade */
-        .cartao-atividade {
-            background-color: #ffffffd9;
-            border-radius: 40px 40px 25px 25px;
-            padding: 1rem 0.5rem 0.8rem 0.5rem;
-            box-shadow: 0 8px 0 #bb8f6a, 0 12px 18px -8px rgba(0,0,0,0.3);
-            border: 3px solid #fbba6e;
-            transition: transform 0.1s ease, box-shadow 0.2s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            cursor: pointer;
-            min-width: 0;  /* previne overflow do grid */
+        /* Grid de imagens */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            animation: fadeIn 1s ease;
         }
 
-        .cartao-atividade:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 0 #bb8f6a, 0 18px 22px -8px black;
-            background-color: #fffae9;
-        }
-
-        /* todas as imagens da grade */
-        .cartao-atividade img {
-            width: 100%;
-            aspect-ratio: 1 / 1;            /* quadradinho perfeito */
-            object-fit: cover;                /* cobre sem distorcer */
-            border-radius: 30px 30px 18px 18px;
-            border: 4px solid #ffc489;
-            background: #fce3c1;              /* fundo amarelinho enquanto carrega */
-            display: block;
-            box-shadow: inset 0 0 0 2px white, 0 4px 6px #ac8f64;
-        }
-
-        /* pequeno texto da atividade (estilo adesivo) */
-        .cartao-atividade span {
-            margin-top: 0.6rem;
-            font-weight: bold;
-            font-size: 0.95rem;
-            color: #4b2e14;
-            background: #fef5ae;
-            padding: 0.25rem 0.8rem;
-            border-radius: 50px;
-            border: 2px solid #f09b42;
-            display: inline-block;
-            max-width: 90%;
-            white-space: nowrap;
+        /* Card individual */
+        .card {
+            background: white;
+            border-radius: 15px;
             overflow: hidden;
-            text-overflow: ellipsis;
-            box-shadow: 0 3px 0 #b45f1b;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
         }
 
-        /* rodapé com instrução */
-        .instrucao {
-            margin-top: 2.5rem;
-            background: #a7d0cd;
-            border-radius: 100px;
-            padding: 0.7rem 2rem;
-            border: 4px solid #ffe9b0;
-            color: #0e4743;
-            font-size: 1.2rem;
-            font-weight: bold;
-            max-width: 800px;
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-info {
+            padding: 15px;
+            background: white;
+        }
+
+        .card-info h3 {
+            font-size: 1.1em;
+            color: #f5576c;
+            margin-bottom: 5px;
+        }
+
+        .card-info p {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        /* Botão de voltar ao topo */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #f5576c;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #f093fb;
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
             text-align: center;
-            box-shadow: 0 6px 0 #5f9b97;
+            padding: 30px;
+            margin-top: 40px;
         }
 
-        .instrucao span {
-            background: #ffecaa;
-            padding: 0.2rem 1rem;
-            border-radius: 40px;
-            margin: 0 5px;
-        }
-
-        /* adaptação para telas menores mantendo 5 colunas (ainda legível) */
-        @media (max-width: 850px) {
-            .galeria-grade {
-                gap: 0.8rem;
+        /* Animações */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
             }
-            .cartao-atividade span {
-                font-size: 0.75rem;
-                white-space: normal;
-                word-break: break-word;
-            }
-            body { padding: 1rem; }
-            .titulo-galeria h1 { font-size: 1.8rem; }
-        }
-
-        @media (max-width: 600px) {
-            .galeria-grade {
-                grid-template-columns: repeat(5, 1fr); /* ainda 5 colunas, mas as imagens encolhem */
-                gap: 0.5rem;
-            }
-            .cartao-atividade {
-                padding: 0.5rem 0.2rem;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        /* brilho bônus nos cantos */
-        .cartao-atividade::after {
-            content: "⭐";
-            font-size: 1.2rem;
-            opacity: 0.4;
-            align-self: flex-end;
-            margin-top: -0.8rem;
-            margin-right: 0.2rem;
-            transform: rotate(10deg);
-            pointer-events: none;
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 15px;
+            }
+            
+            .card img {
+                height: 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading effect */
+        .card {
+            animation: fadeInUp 0.6s ease backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Estilização para diferentes delays */
+        .card:nth-child(1) { animation-delay: 0.05s; }
+        .card:nth-child(2) { animation-delay: 0.1s; }
+        .card:nth-child(3) { animation-delay: 0.15s; }
+        .card:nth-child(4) { animation-delay: 0.2s; }
+        .card:nth-child(5) { animation-delay: 0.25s; }
+        .card:nth-child(6) { animation-delay: 0.3s; }
+        .card:nth-child(7) { animation-delay: 0.35s; }
+        .card:nth-child(8) { animation-delay: 0.4s; }
+        .card:nth-child(9) { animation-delay: 0.45s; }
+        .card:nth-child(10) { animation-delay: 0.5s; }
+        .card:nth-child(11) { animation-delay: 0.55s; }
+        .card:nth-child(12) { animation-delay: 0.6s; }
+        .card:nth-child(13) { animation-delay: 0.65s; }
+        .card:nth-child(14) { animation-delay: 0.7s; }
+        .card:nth-child(15) { animation-delay: 0.75s; }
+        .card:nth-child(16) { animation-delay: 0.8s; }
+        .card:nth-child(17) { animation-delay: 0.85s; }
+        .card:nth-child(18) { animation-delay: 0.9s; }
+        .card:nth-child(19) { animation-delay: 0.95s; }
+        .card:nth-child(20) { animation-delay: 1s; }
+        .card:nth-child(21) { animation-delay: 1.05s; }
+        .card:nth-child(22) { animation-delay: 1.1s; }
+        .card:nth-child(23) { animation-delay: 1.15s; }
+        .card:nth-child(24) { animation-delay: 1.2s; }
+        .card:nth-child(25) { animation-delay: 1.25s; }
+        .card:nth-child(26) { animation-delay: 1.3s; }
+        .card:nth-child(27) { animation-delay: 1.35s; }
+        .card:nth-child(28) { animation-delay: 1.4s; }
+        .card:nth-child(29) { animation-delay: 1.45s; }
+        .card:nth-child(30) { animation-delay: 1.5s; }
+        .card:nth-child(31) { animation-delay: 1.55s; }
+        .card:nth-child(32) { animation-delay: 1.6s; }
+        .card:nth-child(33) { animation-delay: 1.65s; }
+        .card:nth-child(34) { animation-delay: 1.7s; }
+        .card:nth-child(35) { animation-delay: 1.75s; }
+        .card:nth-child(36) { animation-delay: 1.8s; }
+        .card:nth-child(37) { animation-delay: 1.85s; }
+        .card:nth-child(38) { animation-delay: 1.9s; }
+        .card:nth-child(39) { animation-delay: 1.95s; }
+        .card:nth-child(40) { animation-delay: 2s; }
+        .card:nth-child(41) { animation-delay: 2.05s; }
+        .card:nth-child(42) { animation-delay: 2.1s; }
+        .card:nth-child(43) { animation-delay: 2.15s; }
+        .card:nth-child(44) { animation-delay: 2.2s; }
+        .card:nth-child(45) { animation-delay: 2.25s; }
+        .card:nth-child(46) { animation-delay: 2.3s; }
+        .card:nth-child(47) { animation-delay: 2.35s; }
+        .card:nth-child(48) { animation-delay: 2.4s; }
+        .card:nth-child(49) { animation-delay: 2.45s; }
+        .card:nth-child(50) { animation-delay: 2.5s; }
     </style>
 </head>
 <body>
-
-    <div class="titulo-galeria">
-        <h1>🧸 50 ATIVIDADES DIVERTIDAS 🧸</h1>
-        <p>clique nos quadrinhos para ver ideias 🌈</p>
+    <div class="header">
+        <h1>🎨 50 Atividades Infantis Incríveis 🎈</h1>
+        <p>Descubra momentos divertidos e educativos para as crianças!</p>
     </div>
 
-    <!-- GRADE PRINCIPAL: 50 espaços com <img src="..."> e nome da atividade -->
-    <div class="galeria-grade" id="galeria-infantil">
-        <!-- Os 50 cards serão inseridos automaticamente pelo JS, 
-             mas já vêm com imagens ilustrativas de brinquedos / animais / atividades infantis 
-             (usamos placeholders temáticos e coloridos) -->
+    <div class="container">
+        <div class="gallery">
+            <!-- 50 imagens de atividades infantis -->
+            <div class="card">
+                <img src="https://picsum.photos/id/100/400/300" alt="Atividade 1 - Pintura criativa">
+                <div class="card-info">
+                    <h3>🎨 Pintura Criativa</h3>
+                    <p>Desenvolva a imaginação com cores</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/101/400/300" alt="Atividade 2 - Leitura divertida">
+                <div class="card-info">
+                    <h3>📚 Leitura Divertida</h3>
+                    <p>Explore mundos através dos livros</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/102/400/300" alt="Atividade 3 - Música e dança">
+                <div class="card-info">
+                    <h3>🎵 Música e Dança</h3>
+                    <p>Movimento e alegria</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/103/400/300" alt="Atividade 4 - Jogos educativos">
+                <div class="card-info">
+                    <h3>🎮 Jogos Educativos</h3>
+                    <p>Aprender brincando é mais divertido</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/104/400/300" alt="Atividade 5 - Atividades ao ar livre">
+                <div class="card-info">
+                    <h3>🌳 Atividades ao Ar Livre</h3>
+                    <p>Contato com a natureza</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/105/400/300" alt="Atividade 6 - Artesanato">
+                <div class="card-info">
+                    <h3>✂️ Artesanato</h3>
+                    <p>Crie com as próprias mãos</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/106/400/300" alt="Atividade 7 - Culinária infantil">
+                <div class="card-info">
+                    <h3>🍪 Culinária Infantil</h3>
+                    <p>Receitas simples e divertidas</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/107/400/300" alt="Atividade 8 - Experiências científicas">
+                <div class="card-info">
+                    <h3>🔬 Experiências Científicas</h3>
+                    <p>Descubra a ciência de forma lúdica</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/108/400/300" alt="Atividade 9 - Teatro de fantoches">
+                <div class="card-info">
+                    <h3>🎭 Teatro de Fantoches</h3>
+                    <p>Encenação e criatividade</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/109/400/300" alt="Atividade 10 - Yoga para crianças">
+                <div class="card-info">
+                    <h3>🧘 Yoga para Crianças</h3>
+                    <p>Equilíbrio e concentração</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/110/400/300" alt="Atividade 11 - Jardim suspenso">
+                <div class="card-info">
+                    <h3>🌱 Jardim Suspenso</h3>
+                    <p>Cultivando responsabilidade</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/111/400/300" alt="Atividade 12 - Pintura facial">
+                <div class="card-info">
+                    <h3>🎭 Pintura Facial</h3>
+                    <p>Transforme-se em personagens</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/112/400/300" alt="Atividade 13 - Caça ao tesouro">
+                <div class="card-info">
+                    <h3>🗺️ Caça ao Tesouro</h3>
+                    <p>Aventura e desafios</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/113/400/300" alt="Atividade 14 - Origami">
+                <div class="card-info">
+                    <h3>📄 Origami</h3>
+                    <p>Arte em papel</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/114/400/300" alt="Atividade 15 - Bolhas de sabão">
+                <div class="card-info">
+                    <h3>🫧 Bolhas de Sabão</h3>
+                    <p>Diversão garantida</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/115/400/300" alt="Atividade 16 - Construção com blocos">
+                <div class="card-info">
+                    <h3>🧱 Construção com Blocos</h3>
+                    <p>Desenvolvendo a engenharia</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/116/400/300" alt="Atividade 17 - Quebra-cabeças">
+                <div class="card-info">
+                    <h3>🧩 Quebra-cabeças</h3>
+                    <p>Raciocínio lógico</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/117/400/300" alt="Atividade 18 - Pintura em tela">
+                <div class="card-info">
+                    <h3>🖼️ Pintura em Tela</h3>
+                    <p>Expressão artística</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/118/400/300" alt="Atividade 19 - Contação de histórias">
+                <div class="card-info">
+                    <h3>📖 Contação de Histórias</h3>
+                    <p>Imaginação sem limites</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/119/400/300" alt="Atividade 20 - Dança das cadeiras">
+                <div class="card-info">
+                    <h3>💃 Dança das Cadeiras</h3>
+                    <p>Música e movimento</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/120/400/300" alt="Atividade 21 - Massinha de modelar">
+                <div class="card-info">
+                    <h3>🎨 Massinha de Modelar</h3>
+                    <p>Criatividade tátil</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/121/400/300" alt="Atividade 22 - Piquenique">
+                <div class="card-info">
+                    <h3>🧺 Piquenique</h3>
+                    <p>Alimentação saudável e diversão</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/122/400/300" alt="Atividade 23 - Acampamento no quintal">
+                <div class="card-info">
+                    <h3>⛺ Acampamento no Quintal</h3>
+                    <p>Aventura em casa</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/123/400/300" alt="Atividade 24 - Corrida de obstáculos">
+                <div class="card-info">
+                    <h3>🏃 Corrida de Obstáculos</h3>
+                    <p>Coordenação motora</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/124/400/300" alt="Atividade 25 - Jogo da memória">
+                <div class="card-info">
+                    <h3>🃏 Jogo da Memória</h3>
+                    <p>Exercitando o cérebro</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/125/400/300" alt="Atividade 26 - Pintura com dedos">
+                <div class="card-info">
+                    <h3>🖐️ Pintura com Dedos</h3>
+                    <p>Sensações e cores</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/126/400/300" alt="Atividade 27 - Karaokê infantil">
+                <div class="card-info">
+                    <h3>🎤 Karaokê Infantil</h3>
+                    <p>Confiança e diversão</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/127/400/300" alt="Atividade 28 - Boliche caseiro">
+                <div class="card-info">
+                    <h3>🎳 Boliche Caseiro</h3>
+                    <p>Pontaria e diversão</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/128/400/300" alt="Atividade 29 - Desenho livre">
+                <div class="card-info">
+                    <h3>✏️ Desenho Livre</h3>
+                    <p>Expressão e criatividade</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/129/400/300" alt="Atividade 30 - Colagem criativa">
+                <div class="card-info">
+                    <h3>🖍️ Colagem Criativa</h3>
+                    <p>Arte com texturas</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/130/400/300" alt="Atividade 31 - Circuito psicomotor">
+                <div class="card-info">
+                    <h3>🤸 Circuito Psicomotor</h3>
+                    <p>Desenvolvimento físico</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/131/400/300" alt="Atividade 32 - Plantio de mudas">
+                <div class="card-info">
+                    <h3>🌻 Plantio de Mudas</h3>
+                    <p>Educação ambiental</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/132/400/300" alt="Atividade 33 - Pescaria magnética">
+                <div class="card-info">
+                    <h3>🐟 Pescaria Magnética</h3>
+                    <p>Coordenação motora fina</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/133/400/300" alt="Atividade 34 - Circuito de cores">
+                <div class="card-info">
+                    <h3>🌈 Circuito de Cores</h3>
+                    <p>Aprendendo as cores</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/134/400/300" alt="Atividade 35 - Bonecos de meia">
+                <div class="card-info">
+                    <h3>🧦 Bonecos de Meia</h3>
+                    <p>Reciclagem criativa</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/135/400/300" alt="Atividade 36 - Jogo de equilíbrio">
+                <div class="card-info">
+                    <h3>⚖️ Jogo de Equilíbrio</h3>
+                    <p>Concentração e postura</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/136/400/300" alt="Atividade 37 - Caixa sensorial">
+                <div class="card-info">
+                    <h3>📦 Caixa Sensorial</h3>
+                    <p>Exploração tátil</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/137/400/300" alt="Atividade 38 - Fantoches de papel">
+                <div class="card-info">
+                    <h3>🎭 Fantoches de Papel</h3>
+                    <p>Criação de personagens</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/138/400/300" alt="Atividade 39 - Amarelinha">
+                <div class="card-info">
+                    <h3>🟨 Amarelinha</h3>
+                    <p>Brincadeira tradicional</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/139/400/300" alt="Atividade 40 - Pular corda">
+                <div class="card-info">
+                    <h3>⭕ Pular Corda</h3>
+                    <p>Exercício e diversão</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/140/400/300" alt="Atividade 41 - Circuito de bolinhas">
+                <div class="card-info">
+                    <h3>⚽ Circuito de Bolinhas</h3>
+                    <p>Controle motor</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/141/400/300" alt="Atividade 42 - Mímica">
+                <div class="card-info">
+                    <h3>🎪 Mímica</h3>
+                    <p>Expressão corporal</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/142/400/300" alt="Atividade 43 - Stop">
+                <div class="card-info">
+                    <h3>✍️ Stop</h3>
+                    <p>Jogo de palavras</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/143/400/300" alt="Atividade 44 - Forca">
+                <div class="card-info">
+                    <h3>💀 Forca</h3>
+                    <p>Vocabulário divertido</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/144/400/300" alt="Atividade 45 - Batalha naval">
+                <div class="card-info">
+                    <h3>⚓ Batalha Naval</h3>
+                    <p>Estratégia e raciocínio</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/145/400/300" alt="Atividade 46 - Dominó">
+                <div class="card-info">
+                    <h3>🀆 Dominó</h3>
+                    <p>Números e combinações</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/146/400/300" alt="Atividade 47 - Xadrez">
+                <div class="card-info">
+                    <h3>♟️ Xadrez</h3>
+                    <p>Pensamento estratégico</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/147/400/300" alt="Atividade 48 - Pipa">
+                <div class="card-info">
+                    <h3>🪁 Pipa</h3>
+                    <p>Tradição e vento</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/148/400/300" alt="Atividade 49 - Oficina de reciclagem">
+                <div class="card-info">
+                    <h3>♻️ Oficina de Reciclagem</h3>
+                    <p>Consciência ambiental</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/149/400/300" alt="Atividade 50 - Festa do pijama">
+                <div class="card-info">
+                    <h3>🛌 Festa do Pijama</h3>
+                    <p>Momentos inesquecíveis</p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="instrucao">
-        <span>✏️ 5 colunas × 10 linhas = 50 ideias</span>  <span>🎨 passe o mouse</span>
+    <div class="footer">
+        <p>🌟 50 Atividades Infantis para momentos especiais! 🌟</p>
+        <p style="margin-top: 10px; opacity: 0.8;">Desenvolvido com 💖 para inspirar diversão e aprendizado</p>
+    </div>
+
+    <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        ↑
     </div>
 
     <script>
-        (function() {
-            // Lista com 50 atividades infantis + links de imagens (ilustrações livres, seguras)
-            // Fontes: placekitten (só gatos) não seria legal, então usamos imagens temáticas via placeholder
-            // Todas as imagens são de estoque gratuito (picsum) com ID fixo para cada atividade.
-            // Mas para ficar lúdico, escolhi fotos que remetem a brincadeiras, bichos, desenhos.
-            // Nota: as imagens são apenas sugestões visuais — o importante é preencher os 50 <img src>.
-
-            const atividades = [
-                { nome: "Pintura com guache", imgId: "1015" },        // montanha / rio (natureza)
-                { nome: "Massinha colorida", imgId: "100" },          // camera antiga (ilusão de massinha)
-                { nome: "Fantoche de meia", imgId: "102" },           // cachorro (sugestão de fantoche)
-                { nome: "Caça ao tesouro", imgId: "104" },            // palmeira (tesouro na praia)
-                { nome: "Teatro de sombras", imgId: "106" },          // flor (sombras de plantas)
-                { nome: "Dança das cadeiras", imgId: "107" },         // grama (campo para dança)
-                { nome: "Quebra-cabeça", imgId: "108" },              // cachorro (quebra-cabeça de animal)
-                { nome: "Leitura ao ar livre", imgId: "110" },        // floresta (leitura na natureza)
-                { nome: "Pega-pega", imgId: "112" },                  // pássaro (movimento)
-                { nome: "Amarelinha", imgId: "114" },                 // ponte (caminho)
-                { nome: "Plantar feijão", imgId: "116" },             // folha (plantas)
-                { nome: "Origami fácil", imgId: "117" },              // pássaro (lembra origami)
-                { nome: "Pintura no rosto", imgId: "118" },           // borboleta (pintura)
-                { nome: "Bolhas de sabão", imgId: "119" },            // nuvens (bolhas)
-                { nome: "Fazer slime", imgId: "120" },                // montanhas rosas (cores)
-                { nome: "Corrida de saco", imgId: "121" },            // zebra (listras)
-                { nome: "Construir cabana", imgId: "122" },           // cabana? (cachorro)
-                { nome: "Jogo da memória", imgId: "123" },            // bike (memória de criança)
-                { nome: "Boliche de garrafa", imgId: "124" },         // pedras (boliche na natureza)
-                { nome: "Pintura com os dedos", imgId: "125" },       // três cachorros (cores)
-                { nome: "Brincar de roda", imgId: "126" },            // borboletas (roda)
-                { nome: "História em quadrinho", imgId: "127" },      // urso (personagem)
-                { nome: "Esconde-esconde", imgId: "128" },            // árvore (esconderijo)
-                { nome: "Pular corda", imgId: "129" },                // luzes (movimento)
-                { nome: "Fazer biscoitos", imgId: "130" },            // gato (cozinha imaginária)
-                { nome: "Recorte e colagem", imgId: "131" },          // zebra preta (contraste)
-                { nome: "Jogo de argolas", imgId: "132" },            // mar (argolas de salva-vidas)
-                { nome: "Telefone sem fio", imgId: "133" },           // famílias (comunicação)
-                { nome: "Andar de bicicleta", imgId: "134" },         // bike real
-                { nome: "Acampamento no quintal", imgId: "135" },     // natureza
-                { nome: "Piquenique", imgId: "136" },                 // montanhas
-                { nome: "Fogueira de histórias", imgId: "137" },      // montanhas azuis
-                { nome: "Pipa", imgId: "138" },                       // pássaros (como pipas)
-                { nome: "Brincar com água", imgId: "139" },           // praia
-                { nome: "Barquinho de papel", imgId: "140" },         // mar
-                { nome: "Coleção de pedras", imgId: "141" },          // pedras
-                { nome: "Desenho de observação", imgId: "142" },      // floresta
-                { nome: "Mímica", imgId: "143" },                     // golfinhos (mímica de animais)
-                { nome: "Construir com blocos", imgId: "144" },       // montanhas
-                { nome: "Brincar de escolinha", imgId: "145" },       // livro
-                { nome: "Fazer pulseiras", imgId: "146" },            // ouriço (colorido)
-                { nome: "Massa de modelar", imgId: "147" },           // areia (textura)
-                { nome: "Jogo de tabuleiro", imgId: "148" },          // tartaruga
-                { nome: "Bexigas estouradas", imgId: "149" },         // flores (cores)
-                { nome: "Cozinha de mentira", imgId: "150" },         // panelas? (ponte)
-                { nome: "Caixa sensorial", imgId: "151" },            // areia/mar
-                { nome: "Músicas com gestos", imgId: "152" },         // ondas (som)
-                { nome: "Ioiô / pião", imgId: "153" },                // montanhas
-                { nome: "Observar insetos", imgId: "154" },           // inseto (besouro)
-                { nome: "Fazer carimbos", imgId: "155" }              // folhas (carimbos naturais)
-            ];
-
-            const galeria = document.getElementById('galeria-infantil');
-            if (!galeria) return;
-
-            // cria 50 cartões (a partir do array de 50)
-            for (let i = 0; i < atividades.length; i++) {
-                const atv = atividades[i];
-
-                // cartão principal
-                const card = document.createElement('div');
-                card.className = 'cartao-atividade';
-
-                // tag img com link (utilizando o Picsum com ID fixo e tamanho 300x300)
-                const img = document.createElement('img');
-                // usamos o ID do array para gerar imagem sempre única (mas pode repetir, tudo bem)
-                // também adiciona um parâmetro aleatório pequeno para evitar cache igual (mas mantemos o ID)
-                img.src = `https://picsum.photos/id/${atv.imgId}/300/300`;   // 50 imagens diferentes
-                img.alt = `atividade: ${atv.nome}`;
-                img.loading = 'lazy';   // carregamento suave
-                img.title = atv.nome;
-
-                // legenda da atividade
-                const legenda = document.createElement('span');
-                legenda.textContent = atv.nome;
-
-                card.appendChild(img);
-                card.appendChild(legenda);
-
-                // opcional: adiciona link clicável simbólico
-                card.addEventListener('click', () => {
-                    alert(`🧩 Vamos ${atv.nome.toLowerCase()}? 🎉`);
-                });
-
-                galeria.appendChild(card);
+        // Mostrar/ocultar botão de voltar ao topo
+        window.addEventListener('scroll', function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
             }
+        });
 
-            // (garantia extra: se atividades.length for menor que 50 por engano, mas está com 50)
-            // Neste caso, array.length = 50 exatos. Se quiser redundância, descomentar abaixo:
-            // while (galeria.children.length < 50) { ... }  (mas não é necessário)
-        })();
+        // Animação ao carregar a página
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Site carregado com 50 atividades infantis!');
+        });
     </script>
-
-    <!-- Estilo extra para enfeitar os placeholders enquanto carregam -->
-    <noscript>
-        <div style="background:tomato; color:white; padding:2rem;">Ops! Ative o JavaScript para ver as imagens.</div>
-    </noscript>
 </body>
 </html>
